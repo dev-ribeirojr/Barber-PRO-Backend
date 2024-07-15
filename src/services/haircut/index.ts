@@ -1,0 +1,5 @@
+export { CreateHaircutService } from "./CreateHaircutService"
+export { ListHaircutService } from "./ListHaircutService"
+export { UpdateHaircutService } from "./UpdateHaircutService"
+export { CountHaircutService } from "./CountHaircutService"
+export { DetailsHaircutService } from "./DetailsHaircutService"

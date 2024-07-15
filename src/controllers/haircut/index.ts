@@ -1,0 +1,5 @@
+export { CreateHaircutController } from "./CreateHaircutController"
+export { ListHaircutController } from "./ListHaircutController"
+export { UpdateHaircutController } from "./UpdateHaircutController"
+export { CountHaircutController } from "./CountHaircutController"
+export { DetailsHaircutController } from "./DetailsHaircutController"
