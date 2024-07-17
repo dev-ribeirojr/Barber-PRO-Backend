@@ -3,7 +3,7 @@ import { CountHaircutService } from "../../services";
 
 class CountHaircutController {
   async handle(req: Request, res: Response) {
-    const user_id = req.body
+    const user_id = req.user_id
 
     const countHaircutService = new CountHaircutService()
 
