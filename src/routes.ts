@@ -15,7 +15,8 @@ import {
   ListScheduleController,
   FinishScheduleController,
   SubscriptionController,
-  WebHooksController
+  WebHooksController,
+  CreatePortalController
 } from "./controllers"
 import { isAuthenticated } from "./middlewares"
 
@@ -37,11 +38,12 @@ router.get("/haircut/detail", isAuthenticated, new DetailsHaircutController().ha
 //subscriptions
 router.get("/subscription/check", isAuthenticated, new CheckSubscriptionController().handle)
 router.post("/subscription", isAuthenticated, new SubscriptionController().handle)
+router.post("/create-portal", isAuthenticated, new CreatePortalController().handle)
+router.post("/webhook", new WebHooksController().handle)
 
 //schedule
 router.post("/schedule", isAuthenticated, new NewScheduleController().handle)
 router.get("/schedules", isAuthenticated, new ListScheduleController().handle)
 router.delete("/schedule", isAuthenticated, new FinishScheduleController().handle)
-router.post("/webhook", new WebHooksController().handle)
 
 export { router }
