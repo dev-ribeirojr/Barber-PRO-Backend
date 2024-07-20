@@ -8,24 +8,21 @@ class WebHooksController {
 
     let event: Stripe.Event = req.body
 
+    const signature = req.headers["stripe-signature"]
     let endpointSecret = process.env.STRIPE_WEBHOOK_SECRET
 
-    if (endpointSecret) {
-      const signature = req.headers["stripe-signature"]
+    try {
 
-      try {
+      event = stripe.webhooks.constructEvent(
+        req.body,
+        signature,
+        endpointSecret
+      )
 
-        event = stripe.webhooks.constructEvent(
-          req.body,
-          signature,
-          endpointSecret
-        )
-
-      } catch (error) {
-        console.log("Webhook signature failed", error.message)
-        return res.status(400)
-      }
+    } catch (error) {
+      return res.status(400).send(`Webhook error ${error.message}`,)
     }
+
 
     switch (event.type) {
       case "customer.subscription.deleted":

@@ -1,4 +1,4 @@
-import { Router } from "express"
+import express, { Router } from "express"
 
 import {
   CreateHaircutController,
@@ -39,7 +39,7 @@ router.get("/haircut/detail", isAuthenticated, new DetailsHaircutController().ha
 router.get("/subscription/check", isAuthenticated, new CheckSubscriptionController().handle)
 router.post("/subscription", isAuthenticated, new SubscriptionController().handle)
 router.post("/create-portal", isAuthenticated, new CreatePortalController().handle)
-router.post("/webhook", new WebHooksController().handle)
+router.post("/webhook", express.raw({ type: "application/json" }), new WebHooksController().handle)
 
 //schedule
 router.post("/schedule", isAuthenticated, new NewScheduleController().handle)
